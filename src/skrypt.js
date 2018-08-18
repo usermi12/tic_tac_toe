@@ -40,6 +40,7 @@ function operacja2()
     drugi.innerHTML = r;
 }
 function koniecgry() {
+
     let gra=document.getElementById("gra");
     let reset=document.getElementById("reset");
     let pierwszy = document.getElementById("wynikpierwszy");
