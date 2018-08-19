@@ -13,18 +13,19 @@ class Tile
     setHolder()
     {   
         this.holder=document.getElementById('tile'+this.index);
-        this.holder.addEventListener('click',() => this.changeOwner);
+      //  console.log(this.holder);
+        this.holder.addEventListener('click',this.changeOwner,false);
+        console.log(this.holder.li)
     };
     
     changeOwner()
     {
         
-        console.log('clicked'+this.index);
+       console.log('clicked'+this.index);
        this.owner=game.turn;
-       this.holder.style.backgroundImage='url("../../src/Blonski/horde.jpg");'
        game.updateTiles();
        game.changeTurn();
-      // this.holder.removeEventListener('click', this.changeOwner(game.turn));
+       this.holder.removeEventListener('click',this.changeOwner,false);
        
     }
 }
@@ -62,7 +63,7 @@ class Game
         this.tiles[i]=new Tile(i);
        
         
-    }
+    };
     this.updateTiles();
     for(let i=0;i<9;i++)
     {
@@ -76,8 +77,8 @@ class Game
         board+=this.tiles[i].getCode();
         this.board.innerHTML=board;
         this.win=this.checkWin();
-        console.log(this.win);
-    }
+      //  console.log(this.win);
+    };
     checkWin()
     { 
         console.log("Checking Win")
@@ -110,7 +111,7 @@ class Game
         if(this.checkTile(tileMid,tileLeft,tileRight))return true;
       return false;
 
-    }
+    };
     checkTile(tileMid, tileLeft, tileRight)
     {
         if(tileMid!="noOwner")
@@ -120,7 +121,7 @@ class Game
         return true;
         }
         return false;
-    }
+    };
 };
 
 let game=new Game;
