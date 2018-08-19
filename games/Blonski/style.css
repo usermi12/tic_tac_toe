@@ -1,5 +1,5 @@
 body{
-    background:darkgray;
+    background:rgb(19, 19, 19);
     color:white;
     font-size:36px;
 }
@@ -27,15 +27,32 @@ body{
     width:175px;
     height:175px;
     margin:5%;
-    background:darkgrey;
+    background:rgb(25, 25, 25);
     border:2px solid white;
 }
-.tile:hover
+.noOwner:hover
 {
-    background:rgb(128, 128, 128);
+    background:rgb(125, 125, 125);
+    
 }
 
 #turnHolder
 {
     text-shadow: 0px 0px 10px #ffffff;
+}
+
+.horde
+{
+    background-image: url('../../src/Blonski/horde.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+}
+.ally
+{
+    background-image: url('../../src/Blonski/ally.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+
 }
