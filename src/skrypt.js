@@ -1,6 +1,8 @@
 let tura = 0;
 let p1 = 0;
 let p2 = 0;
+let mustang=12;
+console.log(mustang);
 function ustaw() {
   let reset = document.getElementById("reset");
   let pierwszy = document.getElementById("wynikpierwszy");
@@ -152,6 +154,7 @@ if (tura%9==0)
 function reset() {
     let reset=document.getElementById("reset");
     let gra=document.getElementById("gra");
+    tura=0;
     if (reset.innerHTML=='jeszcze raz?')
     {
         reset.innerHTML='nowa gra?';
