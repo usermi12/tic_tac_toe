@@ -1,8 +1,6 @@
 let tura = 0;
 let p1 = 0;
 let p2 = 0;
-let mustang=12;
-console.log(mustang);
 function ustaw() {
   let reset = document.getElementById("reset");
   let pierwszy = document.getElementById("wynikpierwszy");
