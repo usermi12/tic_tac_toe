@@ -68,8 +68,7 @@ if (tura%9==0)
     gra.style.display = "none";
     reset.innerHTML = "jeszcze raz?";
 }
-else
-{
+
     if (text1=='o' && text2=='o' && text3=='o')
     {
       operacja();
@@ -148,7 +147,7 @@ else
     }
     
 }
-}
+
 
 function reset() {
     let reset=document.getElementById("reset");
