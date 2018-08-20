@@ -13,7 +13,7 @@ class Tile
     setHolder()
     {   
         this.holder=document.getElementById('tile'+this.index);   
-        console.log(this);
+       // console.log(this);
     }
     ownerUpdate()
     {
@@ -26,11 +26,11 @@ class Tile
     {
         let id=this.id.substr(4);
         game.tiles[id].ownerUpdate();
-        console.log(game.turn);
+       // console.log(game.turn);
         game.checkWin();
         game.changeTurn();
        this.removeEventListener("click", game.tiles[id].changeOwner); 
-        console.log(game.tiles[id]);
+       // console.log(game.tiles[id]);
     }
 }
 
@@ -50,7 +50,7 @@ class Game
         game.tiles[i].holder.removeEventListener("click", game.tiles[i].changeOwner);
     }
     startGame()
-    {   game.changeTurn();
+    {   this.turn="horde";
         for(let i=0; i<9;i++)
         game.tiles[i].holder.addEventListener("click", game.tiles[i].changeOwner);
     }
@@ -99,7 +99,10 @@ class Game
         tileMid=this.tiles[i-1].owner;
         tileLeft=this.tiles[i].owner;
         tileRight=this.tiles[i+1].owner;
-        if(this.checkTile(tileMid,tileLeft,tileRight))return true;
+        if(this.checkTile(tileMid,tileLeft,tileRight))
+        {
+            console.log(i-1,i,i+1);
+            return true;}
         }
 
         for(let i=3;i<=5;i++)
@@ -107,17 +110,26 @@ class Game
         tileMid=this.tiles[i-3].owner;
         tileLeft=this.tiles[i].owner;
         tileRight=this.tiles[i+3].owner;
-        if(this.checkTile(tileMid,tileLeft,tileRight))return true;
+        if(this.checkTile(tileMid,tileLeft,tileRight))
+        {
+            console.log(i,i-3,i+3);
+            return true;}
         }
 
         tileMid=this.tiles[4].owner;
         tileLeft=this.tiles[0].owner;
         tileRight=this.tiles[8].owner;
-        if(this.checkTile(tileMid,tileLeft,tileRight))return true;
-
-        tileMid=this.tiles[6].owner;
-        tileRight=this.tiles[2].owner;
-        if(this.checkTile(tileMid,tileLeft,tileRight))return true;
+        if(this.checkTile(tileMid,tileLeft,tileRight))
+        {
+            console.log(4,0,8);
+            return true;}
+            tileMid=this.tiles[4].owner;
+            tileLeft=this.tiles[6].owner;
+            tileRight=this.tiles[2].owner;
+        if(this.checkTile(tileMid,tileLeft,tileRight))
+        {
+            console.log(4,6,2);
+            return true;}
         if(this.turnNumber==9){alert("WOJNA TRWA NADAL! REMIS");
         this.killGame();
     }
