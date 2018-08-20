@@ -27,7 +27,7 @@ class Tile
         let id=this.id.substr(4);
         game.tiles[id].ownerUpdate();
        // console.log(game.turn);
-        game.checkWin();
+        game.win=game.checkWin();
         game.changeTurn();
        this.removeEventListener("click", game.tiles[id].changeOwner); 
        // console.log(game.tiles[id]);
@@ -43,9 +43,11 @@ class Game
         this.turnNumber=0;
         this.board=document.getElementById("gameboard");
         this.tiles=[];
+        this.tie=false;
+        
     }
     killGame()
-    {
+    {   this.win=true;
         for(let i=0; i<9;i++)
         game.tiles[i].holder.removeEventListener("click", game.tiles[i].changeOwner);
     }
@@ -55,7 +57,13 @@ class Game
         game.tiles[i].holder.addEventListener("click", game.tiles[i].changeOwner);
     }
     changeTurn()
-    {   let holder=document.getElementById("turnHolder");
+    { let holder=document.getElementById("turnHolder");
+    this.turnNumber++;
+        if(this.win!==true)
+        {
+        
+        
+       
     if(this.turn=="horde"){
     this.turn="alliance";
     holder.style.color="blue";
@@ -66,7 +74,20 @@ class Game
         }
   
     holder.innerHTML="Tura należy do " + this.turn;
-    this.turnNumber++;
+    }
+    else
+    {
+    this.killGame();
+       holder.innerHTML=this.turn + " WINS";
+
+    
+    }
+    if(this.tie==true)
+    {   holder.style.color="White";
+        holder.innerHTML="REMIS";
+
+
+    }
 };   
 
     createEmptyTiles()
@@ -130,7 +151,9 @@ class Game
         {
             console.log(4,6,2);
             return true;}
-        if(this.turnNumber==9){alert("WOJNA TRWA NADAL! REMIS");
+        if(this.turnNumber>=8){
+        this.win=true;
+        this.tie=true;
         this.killGame();
     }
       return false;
@@ -140,7 +163,7 @@ class Game
     {
         if(tileMid!="noOwner")
         if(tileMid==tileLeft && tileMid==tileRight){
-        alert(game.turn + " WIN!!");
+       // alert(game.turn + " WIN!!");
         
         return true;
         }
