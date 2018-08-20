@@ -9,24 +9,28 @@ class Tile
     getCode()
     {
         return '<div class="tile ' +this.owner + '" id="tile'+this.index +'">'+this.index+'</div>';
-    };
+    }
     setHolder()
     {   
-        this.holder=document.getElementById('tile'+this.index);
-      //  console.log(this.holder);
-        this.holder.addEventListener('click',this.changeOwner,false);
-        console.log(this.holder.li)
-    };
-    
-    changeOwner()
+        this.holder=document.getElementById('tile'+this.index);   
+        console.log(this);
+    }
+    ownerUpdate()
     {
+        this.owner=game.turn;
+        this.holder.classList=['tile '+ this.owner];
         
-       console.log('clicked'+this.index);
-       this.owner=game.turn;
-       game.updateTiles();
-       game.changeTurn();
-       this.holder.removeEventListener('click',this.changeOwner,false);
-       
+    }
+    
+    changeOwner() // "This works as handler?!" "DIV is owner of the function addeventlisiner"
+    {
+        let id=this.id.substr(4);
+        game.tiles[id].ownerUpdate();
+        console.log(game.turn);
+        game.checkWin();
+        game.changeTurn();
+       this.removeEventListener("click", game.tiles[id].changeOwner); 
+        console.log(game.tiles[id]);
     }
 }
 
@@ -40,20 +44,30 @@ class Game
         this.board=document.getElementById("gameboard");
         this.tiles=[];
     }
-
+    killGame()
+    {
+        for(let i=0; i<9;i++)
+        game.tiles[i].holder.removeEventListener("click", game.tiles[i].changeOwner);
+    }
+    startGame()
+    {   game.changeTurn();
+        for(let i=0; i<9;i++)
+        game.tiles[i].holder.addEventListener("click", game.tiles[i].changeOwner);
+    }
     changeTurn()
     {   let holder=document.getElementById("turnHolder");
-    if(this.tura=="horde"){
-    this.tura="alliance";
+    if(this.turn=="horde"){
+    this.turn="alliance";
     holder.style.color="blue";
     }
     else{
-    this.tura="horde"
+    this.turn="horde"
     holder.style.color="red";
         }
   
-    holder.innerHTML="Tura należy do " + this.tura;
-    };   
+    holder.innerHTML="Tura należy do " + this.turn;
+    this.turnNumber++;
+};   
 
     createEmptyTiles()
     {
@@ -64,20 +78,15 @@ class Game
        
         
     };
-    this.updateTiles();
+    let board="";
+    for(let i=0;i<9;i++)
+    board+=this.tiles[i].getCode();
+    this.board.innerHTML=board;
+    this.win=this.checkWin();
     for(let i=0;i<9;i++)
     {
         this.tiles[i].setHolder();
     }
-    };
-    updateTiles()
-    {
-        let board="";
-        for(let i=0;i<9;i++)
-        board+=this.tiles[i].getCode();
-        this.board.innerHTML=board;
-        this.win=this.checkWin();
-      //  console.log(this.win);
     };
     checkWin()
     { 
@@ -109,6 +118,9 @@ class Game
         tileMid=this.tiles[6].owner;
         tileRight=this.tiles[2].owner;
         if(this.checkTile(tileMid,tileLeft,tileRight))return true;
+        if(this.turnNumber==9){alert("WOJNA TRWA NADAL! REMIS");
+        this.killGame();
+    }
       return false;
 
     };
@@ -116,7 +128,7 @@ class Game
     {
         if(tileMid!="noOwner")
         if(tileMid==tileLeft && tileMid==tileRight){
-        alert(game.turn + "WIN");
+        alert(game.turn + " WIN!!");
         
         return true;
         }
@@ -126,5 +138,5 @@ class Game
 
 let game=new Game;
 game.createEmptyTiles();
-game.changeTurn();
-game.updateTiles();
+
+game.startGame();
