@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html lang="pl">
+
+<head>
+    <link rel="stylesheet" type="text/css" href="stylemo.css" />
+    <script src="../src/skrypt.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>tic-tac-toe</title>
+</head>
+
+<body onload="start()">
+    <div class="title"><span class="element1">tic</span>-<span class="element2">tac</span>-<span class="element3">toe</span></div>
+    <div id="wrapper">
+        <div class="item">
+            <div id="wynikpierwszy"></div>
+        </div>
+
+        <div class="item">
+            <div id="gra">
+                <div class="row">
+                    <div class="pole">
+                        <div id="pole1" onclick="klik('pole1')"></div>
+                    </div>
+                    <div class="pole">
+                            <div id="pole2" onclick="klik('pole2')"></div>
+                    </div>
+                    <div class="pole">
+                        <div id="pole3" onclick="klik('pole3')"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="pole">
+                        <div id="pole4" onclick="klik('pole4')"></div>
+                    </div>
+                    <div class="pole">
+                        <div id="pole5" onclick="klik('pole5')"></div>
+                    </div>
+                    <div class="pole">
+                        <div id="pole6" onclick="klik('pole6')"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="pole">
+                        <div id="pole7" onclick="klik('pole7')"></div>
+                    </div>
+                    <div class="pole">
+                        <div id="pole8" onclick="klik('pole8')"></div>
+                    </div>
+                    <div class="pole">
+                        <div id="pole9" onclick="klik('pole9')"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div id="wynikdrugi"></div>
+        </div>
+    </div>
+    <div onclick="Reset()" id="reset"></div>
+</body>
+
+
+</html>
