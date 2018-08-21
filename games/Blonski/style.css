@@ -43,14 +43,14 @@ body{
 
 .horde
 {
-    background-image: url('../../src/Blonski/horde.jpg');
+    background-image: url('../../src/blonski/horde.jpg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: 100%;
 }
 .alliance
 {
-    background-image: url('../../src/Blonski/ally.jpg');
+    background-image: url('../../src/blonski/ally.jpg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: 100%;
